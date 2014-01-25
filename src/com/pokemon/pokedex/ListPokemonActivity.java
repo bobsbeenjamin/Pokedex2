@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
@@ -31,15 +32,22 @@ public class ListPokemonActivity extends Activity {
         customAdapter = new GridViewCustomAdapter(this);
         gridView.setAdapter(customAdapter);
         
+        gridView.setOnItemClickListener(new OnItemClickListener() {
+            
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View v, int position, long arg3) {
+                String name;
+                name = "Bulbasaur";
+                Intent intent = new Intent(getApplicationContext(), DisplayPokemon.class);
+                intent.putExtra("name", name);
+                startActivity(intent);
+            }
+        
+        });
+        
     }
     
-    public void onItemClick(AdapterView<?> arg0, View v, int position, long arg3) {
-        String name;
-        name = names[position];
-        Intent intent = new Intent(this, DisplayPokemon.class);
-        intent.putExtra("name", name);
-        startActivity(intent);
-    }
+    
     
 
     @Override

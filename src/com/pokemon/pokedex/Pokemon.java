@@ -20,7 +20,7 @@ public class Pokemon {
       this.description = "The electric mouse pokemon. It raises its tail to check its surroundings. The tail is sometimes struck by lightning in this pose.";
       this.descriptionVoice = "peeka chew The electric mouse pokee mawn. It raises its tail to check its surroundings. The tail is sometimes struck by lightning in this pose.";
       this.call = "pikachuVoice";
-      this.picturePath = "pikachu_pic";
+      this.picturePath = "blastoise_icon";
    }
    
    public String[] getStats(){
