@@ -53,9 +53,8 @@ public class Pokemon {
 		temp[1] = name;
 		temp[2] = type;
 		temp[3] = String.valueOf(weight) + "lbs";
-		temp[4] = height;
+		//temp[4] = height;
 		
-		/*
 		double tempDouble = Double.parseDouble(height);
 		int tempInt = (int)tempDouble;
 		temp[4] = String.valueOf(tempInt) + "\'";
@@ -63,7 +62,6 @@ public class Pokemon {
 		tempDouble*=100;
 		tempInt = (int)tempDouble;
 		temp[4] = temp[4] + String.valueOf(tempInt) + "\"";
-		*/
 		  
 		temp[5] = description;
 		temp[6] = call;
@@ -122,63 +120,27 @@ public class Pokemon {
 	    	return sb.toString();
 	    }
 	    
-	    protected void onPostExecute(String jsonStr) {
-	    	JSONObject jsonO = null;
-	    	JSONArray jsonArray = null;
-	    	JSONObject jsonString = null;
-			try {
-				jsonO = new JSONObject(jsonStr);
-				Log.d("json root:", "" + jsonO);
-				jsonArray = jsonO.getJSONArray("pokemon");
-				jsonString = jsonArray.getJSONObject(0);
-				//Log.d("json stringy:", "" + jsonString);
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	    	/*JSONArray jsonArray = null;
+	    protected void onPostExecute(String jsonString) {
+		   	//JSONArray jsonArray = null;
 		   	
-		   	JSONObject jsonResponse = null;
+		   	JSONObject jsonResponse = new JSONObject(jsonString);
+		   	JSONArray jsonArray = jsonResponse.getJSONArray("pokemon");
 			try {
-				jsonResponse = new JSONObject(jsonString);
-			} catch (JSONException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			try {
-				jsonArray = jsonResponse.getJSONArray("pokemon");
-			} catch (JSONException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				jsonArray = new JSONArray(jsonString);
+			} catch (JSONException e) {
+				e.printStackTrace();
 			}
 		   	
 		   	List<String> list = new ArrayList<String>();
 		   	for (int i=0; i<jsonArray.length(); i++) {
 		   	    try {
-		   	    	Log.d("json part:", ""+jsonArray.getString(i));
 					list.add(jsonArray.getString(i));
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
 		   	}
-		   	*/
-			try {
-			number = jsonString.getString("pokemon_num");
-			name = jsonString.getString("name");
-			type = jsonString.getString("types");
-			weight = jsonString.getString("weight");
-			height = jsonString.getString("height");
-			description = jsonString.getString("text_description");
-			descriptionVoice = jsonString.getString("read_description");
-			call = jsonString.getString("call_sound"); //may need to change this
-			picturePath = jsonString.getString("picture_path");
-	    	} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();  		
-	    	}
-			getStats();
-			/*
-			number = list.get("pokemon_num");
+		   	
+			number = list.get(0);
 			name = list.get(1);
 			type = list.get(2);
 			weight = list.get(3);
@@ -188,7 +150,6 @@ public class Pokemon {
 			call = list.get(7);
 			picturePath = list.get(8);
 			getStats();
-			*/
 	    }
 
 		private String getQuery(List<NameValuePair> params) throws UnsupportedEncodingException {
