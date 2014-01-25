@@ -5,6 +5,7 @@ import java.util.Locale;
 import android.os.Bundle;
 import android.app.Activity;
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,7 +16,6 @@ public class DisplayPokemon extends Activity {
 	TextView number, name, type, weight, height, desc;
 	ImageView picture;
 	TextToSpeech tts;
-	Pokemon thisPokemon;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,35 +30,40 @@ public class DisplayPokemon extends Activity {
 		desc = (TextView) findViewById(R.id.Description);
 		picture = (ImageView) findViewById(R.id.pic);
 		
-		Bundle extras = getIntent().getExtras(); 
+		Bundle extras = getIntent().getExtras();
 		if(extras !=null)
 		   nameStr = extras.getString("name");
 		// Create Pokemon
-		thisPokemon = new Pokemon(nameStr);
 		// Grab other stuff from database, using new Pokemon
+		
+		Pokemon thisPokemon = new Pokemon(nameStr);
 		String[] data = thisPokemon.getStats();
+		while (data[7].equals("")) {
+			data = thisPokemon.getStats();
+		}
+		Log.d("info: ",	""+data[0]+" "+data[1]+" "+data[2]);
         number.setText(data[0]);
         name.setText(data[1]);
         type.setText(data[2]);
         weight.setText(data[3]);
         height.setText(data[4]);
         desc.setText(data[5]);
+        Log.d("test", "break 1");
         // Grab pic based on pic path
         int id = getResources().getIdentifier("com.pokemon.pokedex:drawable/" + data[7], null, null);
         picture.setImageResource(id);
         tts = new TextToSpeech(DisplayPokemon.this, new TextToSpeech.OnInitListener() {
-           @Override
-           public void onInit(int status) {
-              if(status != TextToSpeech.ERROR){
-                 tts.setLanguage(Locale.UK);
-                 vocalize(thisPokemon.getVoice());
-              }
-           }
-        });        
+            @Override
+            public void onInit(int status) {
+               if(status != TextToSpeech.ERROR){
+                  tts.setLanguage(Locale.UK);
+               }
+            }
+         });
+        vocalize(thisPokemon.getVoice());
 	}
 
-
-   @Override
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.display_pokemon, menu);
@@ -67,7 +72,7 @@ public class DisplayPokemon extends Activity {
 	
 	// Make this thing talk!
 	protected void vocalize(String voice) {
-	   tts.speak(voice, TextToSpeech.QUEUE_FLUSH, null);
+	      tts.speak(voice, TextToSpeech.QUEUE_FLUSH, null);
 	}
 	
 	@Override
