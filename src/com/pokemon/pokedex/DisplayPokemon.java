@@ -38,7 +38,7 @@ public class DisplayPokemon extends Activity {
 		
 		Pokemon thisPokemon = new Pokemon(nameStr);
 		String[] data = thisPokemon.getStats();
-		while (data[7].equals("")) {
+		while (data[0].equals("") || data[1].equals("") || data[2].equals("") || data[3].equals("") || data[4].equals("") || data[5].equals("") || data[7].equals("")) {
 			data = thisPokemon.getStats();
 		}
 		Log.d("info: ",	""+data[0]+" "+data[1]+" "+data[2]);

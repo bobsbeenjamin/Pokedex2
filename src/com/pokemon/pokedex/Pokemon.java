@@ -62,7 +62,7 @@ public class Pokemon {
    
    	public String getVoice() {
 		return descriptionVoice;
-   	}	
+   	}
    
 	/*	queries the database with a specific pokemon number
 		returns the json string for the corresponding pokemon
@@ -85,7 +85,6 @@ public class Pokemon {
 			    conn.setRequestMethod("POST");
 			    conn.setDoInput(true);
 		    	conn.setDoOutput(true);
-		    	
 		    	OutputStream out = conn.getOutputStream();
 		    	BufferedWriter writer = new BufferedWriter(
 		    		new OutputStreamWriter(out, "UTF-8"));
@@ -93,20 +92,19 @@ public class Pokemon {
 		    	writer.flush();
 		    	writer.close();
 		    	out.close();
-		    	
 		    	conn.connect();
 		    	
 		    	responseCode = conn.getResponseCode();
 		    	BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 		    	while ((line = reader.readLine()) != null) {
 		    		sb.append(line+"\n");
-		    		//Log.d("line=", "" + line); //can provide useful errors
+		    		Log.d("line=", "t " + line); //can provide useful errors
 		    	}
 	    	} catch (Exception e) {
 	    		Log.e("Connection", "Error connecting to server -- " + e.toString());
 	    	}
 	    	
-	    	Log.d("JSON string:", "" + sb);
+	    	Log.d("JSON string:", "" + sb.toString());
 	    	Log.d("Response status code:", "" + responseCode);
 	    	
 	    	JSONObject jsonO = null;
@@ -117,7 +115,7 @@ public class Pokemon {
 				Log.d("json root:", "" + jsonO);
 				jsonArray = jsonO.getJSONArray("pokemon");
 				jsonString = jsonArray.getJSONObject(0);
-				//Log.d("json stringy:", "" + jsonString);
+				Log.d("json stringy:", "" + jsonString);
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				Log.e("json: ", ""+e);
@@ -143,7 +141,7 @@ public class Pokemon {
 	    	
 	    	return sb.toString();
 	    }
-	    
+	    /*
 	    protected void onPostExecute(String jsonStr) {
 	    	JSONObject jsonO = null;
 	    	JSONArray jsonArray = null;
@@ -175,7 +173,8 @@ public class Pokemon {
 				Log.e("json error:", ""+e);
 	    	}
 			getStats();
-	    }
+	    }*/
+	    
 
 		private String getQuery(List<NameValuePair> params) throws UnsupportedEncodingException {
 			StringBuilder result = new StringBuilder();
