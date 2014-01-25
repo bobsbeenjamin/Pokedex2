@@ -20,6 +20,15 @@ public class DisplayPokemon extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_display_pokemon);
+		// Assign TextView/ImageView IDs
+		number = (TextView) findViewById(R.id.Num);
+		name = (TextView) findViewById(R.id.Name);
+		type = (TextView) findViewById(R.id.Type);
+		weight = (TextView) findViewById(R.id.Weight);
+		height = (TextView) findViewById(R.id.Height);
+		desc = (TextView) findViewById(R.id.Description);
+		picture = (ImageView) findViewById(R.id.pic);
+		
 		Bundle extras = getIntent().getExtras(); 
 		if(extras !=null)
 		   nameStr = extras.getString("name");
