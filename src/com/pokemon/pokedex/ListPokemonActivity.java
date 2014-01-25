@@ -37,7 +37,7 @@ public class ListPokemonActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> arg0, View v, int position, long arg3) {
                 String name;
-                name = "Bulbasaur";
+                name = names[position];
                 Intent intent = new Intent(getApplicationContext(), DisplayPokemon.class);
                 intent.putExtra("name", name);
                 startActivity(intent);
