@@ -14,6 +14,9 @@ import java.util.List;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
@@ -31,27 +34,20 @@ public class Pokemon {
 	String picturePath;
    
 	public Pokemon(String index) {
+		this.number = "";
+		this.name = "";
+		this.type = "";
+		this.weight = "";
+		this.height = "1";
+		this.description = "";
+		this.descriptionVoice = "";
+		this.call = "";
+		this.picturePath = "";
 	   	mQueryTask = new GetPokemonTask();
 	   	mQueryTask.execute(index); //query the DB
-	   	JSONArray jsonArray = new JSONArray(jsonString);
-	   	
-	   	List<String> list = new ArrayList<String>();
-	   	for (int i=0; i<jsonArray.length(); i++) {
-	   	    list.add( jsonArray.getString(i) );
-	   	}
-	   	
-		this.number = list.get(0);
-		this.name = list.get(1);
-		this.type = list.get(2);
-		this.weight = list.get(3);
-		this.height = list.get(4);
-		this.description = list.get(5);
-		this.descriptionVoice = list.get(6);
-		this.call = list.get(7);
-		this.picturePath = list.get(8);
 	}
    
-   	public String[] getStats(){
+   	public String[] getStats() {
 		String[] temp = new String[8];
 		temp[0] = number;
 		temp[1] = name;
@@ -123,6 +119,38 @@ public class Pokemon {
 	    	Log.d("Response status code:", "" + responseCode);
 	    	return sb.toString();
 	    }
+	    
+	    protected void onPostExecute(String jsonString) {
+		   	//JSONArray jsonArray = null;
+		   	
+		   	JSONObject jsonResponse = new JSONObject(jsonString);
+		   	JSONArray jsonArray = jsonResponse.getJSONArray("pokemon");
+			try {
+				jsonArray = new JSONArray(jsonString);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		   	
+		   	List<String> list = new ArrayList<String>();
+		   	for (int i=0; i<jsonArray.length(); i++) {
+		   	    try {
+					list.add(jsonArray.getString(i));
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+		   	}
+		   	
+			number = list.get(0);
+			name = list.get(1);
+			type = list.get(2);
+			weight = list.get(3);
+			height = list.get(4);
+			description = list.get(5);
+			descriptionVoice = list.get(6);
+			call = list.get(7);
+			picturePath = list.get(8);
+			getStats();
+	    }
 
 		private String getQuery(List<NameValuePair> params) throws UnsupportedEncodingException {
 			StringBuilder result = new StringBuilder();
@@ -140,5 +168,4 @@ public class Pokemon {
 			return result.toString();
 		}
    }
-
 }
