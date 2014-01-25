@@ -35,6 +35,10 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.pokemon.pokedex.DisplayPokemon"
+            android:label="@string/title_activity_display_pokemon" >
+        </activity>
     </application>
 
 </manifest>

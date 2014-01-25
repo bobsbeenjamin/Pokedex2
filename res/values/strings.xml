@@ -7,5 +7,6 @@
     <string name="title_activity_list_pokemon">ListPokemonActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_text_to_speech_test">TextToSpeechTest</string>
+    <string name="title_activity_display_pokemon">DisplayPokemon</string>
 
 </resources>
