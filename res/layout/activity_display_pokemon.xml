@@ -27,20 +27,12 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
-        android:id="@+id/Num"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Small Text"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <TextView
         android:id="@+id/Type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/Num"
         android:layout_centerHorizontal="true"
+        android:paddingTop="10dp"
         android:text="Small Text"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -50,6 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/Type"
         android:layout_centerHorizontal="true"
+        android:paddingTop="10dp"
         android:text="Small Text"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -59,6 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/Height"
         android:layout_centerHorizontal="true"
+        android:paddingTop="10dp"
         android:text="Small Text"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -66,9 +60,60 @@
         android:id="@+id/Description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/Weight"
         android:layout_below="@+id/Weight"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="10dp"
         android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/Num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:paddingTop="10dp"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/Num"
+        android:layout_alignBottom="@+id/Num"
+        android:layout_marginRight="19dp"
+        android:layout_toLeftOf="@+id/Num"
+        android:text="Number:"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/Type"
+        android:layout_alignBottom="@+id/Type"
+        android:layout_alignRight="@+id/textView1"
+        android:text="Type:"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/Height"
+        android:layout_alignRight="@+id/textView2"
+        android:text="Height:"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/Weight"
+        android:layout_alignBottom="@+id/Weight"
+        android:layout_alignRight="@+id/textView3"
+        android:text="Weight:"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </RelativeLayout>
