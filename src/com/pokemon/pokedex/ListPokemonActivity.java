@@ -21,7 +21,12 @@ public class ListPokemonActivity extends Activity {
     static final String[] names = new String[] {
         "Bulbasaur", "Ivysaur", "Venusaur",
         "Charmander", "Charmeleon", "Charizard",
-        "Squirtle", "Wartortle", "Blastoise"};
+        "Squirtle", "Wartortle", "Blastoise",
+        "Caterpie", "Metapod", "Butterfree",
+        "Weedle", "Kakuna", "Beedrill",
+        "Pidgey", "Pidgeotto", "Pidgeot",
+        "Rattata" , "Raticate", "Spearow",
+        "Fearow", "Ekans", "Arbok", "Pikachu", "Raichu"};
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
