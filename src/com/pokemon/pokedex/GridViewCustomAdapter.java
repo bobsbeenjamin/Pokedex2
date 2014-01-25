@@ -17,9 +17,9 @@ public class GridViewCustomAdapter extends ArrayAdapter {
         "Squirtle", "Wartortle", "Blastoise"};
     
     static final String[] icons = new String[] {
-        "bulbasaur_pic", "ivysaur_pic", "venusaur_pic",
-        "charmander_pic", "charmeleon_pic", "charizard_pic",
-        "squirtle_pic", "wartortle_pic", "blastoise_pic"};
+        "bulbasaur_icon", "ivysaur_icon", "venusaur_icon",
+        "charmander_icon", "charmeleon_icon", "charizard_icon",
+        "squirtle_icon", "wartortle_icon", "blastoise_icon"};
     
     Context context;
     

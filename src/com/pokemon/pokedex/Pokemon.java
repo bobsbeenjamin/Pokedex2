@@ -53,16 +53,7 @@ public class Pokemon {
 		temp[1] = name;
 		temp[2] = type;
 		temp[3] = String.valueOf(weight) + "lbs";
-		//temp[4] = height;
-		
-		double tempDouble = Double.parseDouble(height);
-		int tempInt = (int)tempDouble;
-		temp[4] = String.valueOf(tempInt) + "\'";
-		tempDouble-=tempInt;
-		tempDouble*=100;
-		tempInt = (int)tempDouble;
-		temp[4] = temp[4] + String.valueOf(tempInt) + "\"";
-		  
+		temp[4] = height;		  
 		temp[5] = description;
 		temp[6] = call;
 		temp[7] = picturePath;
@@ -117,38 +108,72 @@ public class Pokemon {
 	    	
 	    	Log.d("JSON string:", "" + sb);
 	    	Log.d("Response status code:", "" + responseCode);
+	    	
+	    	JSONObject jsonO = null;
+	    	JSONArray jsonArray = null;
+	    	JSONObject jsonString = null;
+			try {
+				jsonO = new JSONObject(sb.toString());
+				Log.d("json root:", "" + jsonO);
+				jsonArray = jsonO.getJSONArray("pokemon");
+				jsonString = jsonArray.getJSONObject(0);
+				//Log.d("json stringy:", "" + jsonString);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				Log.e("json: ", ""+e);
+			}
+			try {
+			number = jsonString.getString("pokemon_num");
+			Log.d("test", ""+number);
+			name = jsonString.getString("name");
+			type = jsonString.getString("types");
+			weight = jsonString.getString("weight");
+			height = jsonString.getString("height");
+			description = jsonString.getString("text_description");
+			descriptionVoice = jsonString.getString("read_description");
+			call = jsonString.getString("call_sound"); //may need to change this
+			picturePath = jsonString.getString("picture_path");
+			Log.d("test", "break json");
+	    	} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				Log.e("json error:", ""+e);
+	    	}
+			getStats();
+	    	
 	    	return sb.toString();
 	    }
 	    
-	    protected void onPostExecute(String jsonString) {
-		   	//JSONArray jsonArray = null;
-		   	
-		   	JSONObject jsonResponse = new JSONObject(jsonString);
-		   	JSONArray jsonArray = jsonResponse.getJSONArray("pokemon");
+	    protected void onPostExecute(String jsonStr) {
+	    	JSONObject jsonO = null;
+	    	JSONArray jsonArray = null;
+	    	JSONObject jsonString = null;
 			try {
-				jsonArray = new JSONArray(jsonString);
+				jsonO = new JSONObject(jsonStr);
+				Log.d("json root:", "" + jsonO);
+				jsonArray = jsonO.getJSONArray("pokemon");
+				jsonString = jsonArray.getJSONObject(0);
+				//Log.d("json stringy:", "" + jsonString);
 			} catch (JSONException e) {
-				e.printStackTrace();
+				// TODO Auto-generated catch block
+				Log.e("json: ", ""+e);
 			}
-		   	
-		   	List<String> list = new ArrayList<String>();
-		   	for (int i=0; i<jsonArray.length(); i++) {
-		   	    try {
-					list.add(jsonArray.getString(i));
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-		   	}
-		   	
-			number = list.get(0);
-			name = list.get(1);
-			type = list.get(2);
-			weight = list.get(3);
-			height = list.get(4);
-			description = list.get(5);
-			descriptionVoice = list.get(6);
-			call = list.get(7);
-			picturePath = list.get(8);
+			try {
+			number = jsonString.getString("pokemon_num");
+			name = jsonString.getString("name");
+			type = jsonString.getString("types");
+			weight = jsonString.getString("weight");
+			height = jsonString.getString("height");
+			description = jsonString.getString("text_description");
+			descriptionVoice = jsonString.getString("read_description");
+			call = jsonString.getString("call_sound"); //may need to change this
+			picturePath = jsonString.getString("picture_path");
+			//Log.d("test", "break json");
+	    	} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				Log.e("json error:", ""+e);
+	    	}
 			getStats();
 	    }
 
