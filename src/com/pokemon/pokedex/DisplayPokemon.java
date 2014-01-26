@@ -36,7 +36,7 @@ public class DisplayPokemon extends Activity {
 		// Create Pokemon
 		// Grab other stuff from database, using new Pokemon
 		
-		Pokemon thisPokemon = new Pokemon(nameStr);
+		final Pokemon thisPokemon = new Pokemon(nameStr);
 		String[] data = thisPokemon.getStats();
 		while (data[0].equals("") || data[1].equals("") || data[2].equals("") || data[3].equals("") || data[4].equals("") || data[5].equals("") || data[7].equals("")) {
 			data = thisPokemon.getStats();
@@ -57,10 +57,11 @@ public class DisplayPokemon extends Activity {
             public void onInit(int status) {
                if(status != TextToSpeech.ERROR){
                   tts.setLanguage(Locale.UK);
+                  vocalize(thisPokemon.getVoice());
                }
             }
          });
-        vocalize(thisPokemon.getVoice());
+        
 	}
 
 	@Override
